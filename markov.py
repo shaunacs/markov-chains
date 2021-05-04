@@ -42,24 +42,36 @@ def make_chains(text_string):
 
     chains = {}
     contents = open_and_read_file("green-eggs.txt")
+    
     words = contents.split()
     value = []
 
 
 
-    for i in range(len(words)- 2):
+    for i in range(0,len(words)- 2):
         key = (words[i], words[i + 1])
-        value.append(words[i+2])
-        if value not in key:
-            chains[key] = [words[i + 2]]
+        #print(key, '****')
+        if key in chains:
+            chains[key].append(words[i+2])
         else:
-            value.append(words[i+2])
+            chains[key] = [words[i + 2]]
+
+       
+    # for keys in key:
+    #     chains[key].append([words[i+2]])
+   
+        # if value not in key:
+        #     chains[key] = [words[i + 2]]
+        # else:
+        #     value.append(words[i+2])
             #chains[key] = chains[key].get([words[i+2]])
         
         # print ((words[i], words[i + 1]) , words[i+2])
-    print(chains)
+    # print(chains)
     # your code goes here
     
+
+
 
     
 
@@ -70,11 +82,22 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
-    words = []
+    new_words = []
 
     # your code goes here
 
-    return ' '.join(words)
+    for key in chains:
+        next_word = choice(chains[key])
+        key2 = (key[1], next_word)
+        # chains = chains.get(chains[key2]) 
+    for new_word in key2:
+        if new_word in chains:
+            new_words.append([chains[key]])
+        #else:
+            #chains[key2] = [new_words[chains[key]]]
+       
+    print(chains)
+    return ' '.join(new_words)
 
 
 input_path = 'green-eggs.txt'
