@@ -60,32 +60,19 @@ def make_chains(text_string):
 
     # your code goes here
 
-    for i in range(0,len(words)- 2):
+    # for i in range(0,len(words)- 2):
         
-        key2 = (key[1], words[i+2])
+    #     key2 = (key[1], choice(chains[key]))
 
-        if key2 in chains:
-            chains[key2].append(words[i+2])
-        else:
-            chains[key2] = [words[i+2]]
+    #     if key2 in chains:
+    #         chains[key2].append(choice(chains[key]))
+    #     else:
+    #         chains[key2] = []
         # chains = chains.get(chains[key2]) 
-    # for new_word in key2:
-    #     if new_word in chains:
-    #         new_words.append([chains[key]])
-        #else:
-            #chains[key2] = [new_words[chains[key]]]
-
-
-    # for keys in key:
-    #     chains[key].append([words[i+2]])
    
-        # if value not in key:
-        #     chains[key] = [words[i + 2]]
-        # else:
-        #     value.append(words[i+2])
-            #chains[key] = chains[key].get([words[i+2]])
-        
-        # print ((words[i], words[i + 1]) , words[i+2])
+
+
+
     #print(chains)
     # your code goes here
     
@@ -100,16 +87,29 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
-    additional_words = random.choice(words)
-    rndm_output = [additional_words]
+    random_output =[]
 
-    for i in range(30):
-        chains.append(random.choice(chains[rndm_output[-1]]))
+  
+
+
+    #choose random tuple, pick random word from key value
+    for key in chains:
+        pull_from_list = choice(chains[key])
+        pull_from_tuple = choice(list(key))
+        if chains[key] == []:
+            break
+        else:
+            random_output.append(pull_from_tuple)
+            random_output.append(pull_from_list)
+           
+           
+            # picking= random_output.choice(chains[key])
+            # random_output.append(picking)
 
  
-       
+    print(random_output)   
     
-    return ' '.join(words)
+    return ' '.join(random_output)
 
 
 input_path = 'green-eggs.txt'
