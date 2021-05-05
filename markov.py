@@ -49,6 +49,7 @@ def make_chains(text_string):
 
 
     for i in range(0,len(words)- 2):
+
         key = (words[i], words[i + 1])
         #print(key, '****')
         if key in chains:
@@ -56,7 +57,25 @@ def make_chains(text_string):
         else:
             chains[key] = [words[i + 2]]
 
-       
+
+    # your code goes here
+
+    for i in range(0,len(words)- 2):
+        
+        key2 = (key[1], words[i+2])
+
+        if key2 in chains:
+            chains[key2].append(words[i+2])
+        else:
+            chains[key2] = [words[i+2]]
+        # chains = chains.get(chains[key2]) 
+    # for new_word in key2:
+    #     if new_word in chains:
+    #         new_words.append([chains[key]])
+        #else:
+            #chains[key2] = [new_words[chains[key]]]
+
+
     # for keys in key:
     #     chains[key].append([words[i+2]])
    
@@ -67,7 +86,7 @@ def make_chains(text_string):
             #chains[key] = chains[key].get([words[i+2]])
         
         # print ((words[i], words[i + 1]) , words[i+2])
-    # print(chains)
+    #print(chains)
     # your code goes here
     
 
@@ -81,23 +100,16 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Return text from chains."""
+    additional_words = random.choice(words)
+    rndm_output = [additional_words]
 
-    new_words = []
+    for i in range(30):
+        chains.append(random.choice(chains[rndm_output[-1]]))
 
-    # your code goes here
-
-    for key in chains:
-        next_word = choice(chains[key])
-        key2 = (key[1], next_word)
-        # chains = chains.get(chains[key2]) 
-    for new_word in key2:
-        if new_word in chains:
-            new_words.append([chains[key]])
-        #else:
-            #chains[key2] = [new_words[chains[key]]]
+ 
        
-    print(chains)
-    return ' '.join(new_words)
+    
+    return ' '.join(words)
 
 
 input_path = 'green-eggs.txt'
